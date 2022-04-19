@@ -33,8 +33,8 @@ service is also available.<br/><br/>
 * CI Implementation:
 * GitHub Actions is used for CI implementation
 * Building and running the tests are automated on 2 conditions:
-* 1. When new code is pushed to master
-* 2. When pull request action is approved by master
+ 1. When new code is pushed to master
+ 2. When pull request action is approved by master
 
 ##### _Feature File Preview_
 ```gherkin
