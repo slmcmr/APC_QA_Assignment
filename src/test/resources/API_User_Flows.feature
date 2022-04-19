@@ -1,8 +1,8 @@
-@active
-Feature: Booker Crud Operations Template File
+@API_Smoke_Test
+Feature: Create, Update and Delete a booking with API
 
-  @post
-  Scenario: Create and verify a new booking(POST call)
+  @BK-001
+  Scenario: User can create a new booking
     When user posts a valid data to create new booking
       | firstname       | John         |
       | lastname        | Doe          |
@@ -15,9 +15,8 @@ Feature: Booker Crud Operations Template File
     And request and response bodies should be equal for "POST" call
     And  response body "bookingid" field is not null
 
-
-  @put
-  Scenario: Update and verify an existing booking(PUT call)
+  @BK-002
+  Scenario: User can update an existing booking
     Given user posts a valid data to create new booking
       | firstname       | John         |
       | lastname        | Doe          |
@@ -36,8 +35,7 @@ Feature: Booker Crud Operations Template File
       | additionalneeds | AChangeIsMade |
     Then request and response bodies should be equal for "PUT" call
 
-
-  @delete
+  @BK-003
   Scenario: DELETE a booking by id
     Given user posts a valid data to create new booking
       | firstname       | John         |
@@ -52,10 +50,3 @@ Feature: Booker Crud Operations Template File
     Then response status code is 201
     When user calls the booking using id
     Then response status code is 404
-
-
-  @auth
-  Scenario: Make a POST call with valid credentials to get a AUTH TOKEN
-    When user makes a post call with a valid credential
-    Then user should get an auth token in the body
-

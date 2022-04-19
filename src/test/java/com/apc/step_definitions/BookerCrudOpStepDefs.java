@@ -9,10 +9,6 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -151,15 +147,6 @@ public class BookerCrudOpStepDefs {
     public void request_and_response_bodies_should_be_equal_for_call(String callType) throws Exception {
 
         switch (callType){
-            case "GET":
-                assertEquals(requestBody.getFirstname(),response.path("firstname"));
-                assertEquals(requestBody.getLastname(),response.path("lastname"));
-                assertEquals(requestBody.getDepositpaid(),response.path("depositpaid"));
-                assertEquals(requestBody.getTotalprice(),response.path("totalprice"));
-                assertEquals(requestBody.getAdditionalneeds(),response.path("additionalneeds"));
-                assertEquals(requestBody.getBookingdates().getCheckin(),response.path("bookingdates.checkin"));
-                assertEquals(requestBody.getBookingdates().getCheckout(),response.path("bookingdates.checkout"));
-                break;
 
             case "POST":
                 assertEquals(requestBody.getFirstname(),response.path("booking.firstname"));
@@ -180,7 +167,8 @@ public class BookerCrudOpStepDefs {
                 assertEquals("",putBody.get("additionalneeds"), putResponse.path("additionalneeds"));
                 break;
             default:
-                throw new Exception("Only \"GET\", \"POST\" and \"PUT\" is allowed, and yes, CASE SENSITIVE!");
+                throw new Exception("Only \"GET\", \"POST\" and \"PUT\" is allowed." +
+                                callType + " is invalid");
         }
     }
 

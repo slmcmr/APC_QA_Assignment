@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 
-@RunWith(Cucumber.class)//Run with Junit
+@RunWith(Cucumber.class)
 @CucumberOptions(
 
         plugin ={"json:target/cucumber.json",
@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         glue = "com/apc/step_definitions",
         dryRun = false,
-        tags = "@active",
+        tags = "@API_Smoke_Test",
         publish = true
 
 )

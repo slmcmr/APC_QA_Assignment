@@ -19,6 +19,6 @@ public class Hooks {
 
     @After
     public void tearDown(){
-
+        // Possible DB connections will be terminated in tearDown method
     }
 }

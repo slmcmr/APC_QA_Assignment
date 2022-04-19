@@ -5,9 +5,9 @@ AMSTERDAM PLATFORM CRERATION TASK
 
 
 
-##### _TASK : 3 Test Cases_
+##### _TASK : AUTOMATE 3 API Test Cases_
 
-The task includes 4 different API calls(CRUD). Normally it could be achieved<br/>
+The task includes 3 different API calls. Normally it could be achieved<br/>
 with the minimum line of code. However it is designed to be dynamic using the<br/> 
 perks of the ``Java``, ``RestAssured``, ``Cucumber``, ``JUnit`` and ``Gherkin``. In terms of data<br/> 
 structures, ``POJO`` classes are used along with ``Java Collections`` just to make use of<br/>
@@ -31,74 +31,58 @@ service is also available.<br/><br/>
 
 ##### _Feature File Preview_
 ```gherkin
- # method for comparing body and payload takes parameters: GET,PUT and POST.
+ # method for comparing body and payload takes parameters: PUT and POST.
  # verifying status code is dynamic. it allows any number as parameter.
  # request and update bodies can be edited.
- 
-    @active
+
+    @API_Smoke_Test
     Feature: Booker Crud Operations
     
-      @post
+      @BK-001
       Scenario: Create and verify a new booking(POST call)
         When user posts a valid data to create new booking
           | firstname       | John         |
           | lastname        | Doe          |
           | totalprice      | 120          |
           | depositpaid     | true         |
-          | checkin         | 2021-04-04   |
-          | checkout        | 2021-05-04   |
+          | checkin         | 2022-04-19   |
+          | checkout        | 2022-05-03   |
           | additionalneeds | extra pillow |
         Then response status code is 200
         And request and response bodies should be equal for "POST" call
         And  response body "bookingid" field is not null
     
     
-      @put
+      @BK-002
       Scenario: Update and verify a new booking(PUT call)
         Given user posts a valid data to create new booking
           | firstname       | John         |
           | lastname        | Doe          |
           | totalprice      | 120          |
           | depositpaid     | true         |
-          | checkin         | 2021-04-04   |
-          | checkout        | 2021-05-04   |
+          | checkin         | 2022-04-19   |
+          | checkout        | 2022-05-03   |
           | additionalneeds | extra pillow |
         When user updates the data above and makes a put request
           | firstname       | John          |
           | lastname        | AChangeIsMade |
-          | totalprice      | 120           |
+          | totalprice      | 100           |
           | depositpaid     | true          |
-          | checkin         | 2021-04-04    |
-          | checkout        | 2021-05-04    |
+          | checkin         | 2022-04-19    |
+          | checkout        | 2022-05-04    |
           | additionalneeds | AChangeIsMade |
         Then request and response bodies should be equal for "PUT" call
     
     
-      @get
-      Scenario: GET a booking by id
-        Given user posts a valid data to create new booking
-          | firstname       | John         |
-          | lastname        | Doe          |
-          | totalprice      | 120          |
-          | depositpaid     | true         |
-          | checkin         | 2021-04-04   |
-          | checkout        | 2021-05-04   |
-          | additionalneeds | extra pillow |
-        And response status code is 200
-        When user calls the booking using id
-        Then response status code is 200
-        And request and response bodies should be equal for "GET" call
-    
-    
-      @delete
+      @BK-003
       Scenario: DELETE a booking
         Given user posts a valid data to create new booking
           | firstname       | John         |
           | lastname        | Doe          |
           | totalprice      | 120          |
           | depositpaid     | true         |
-          | checkin         | 2021-04-04   |
-          | checkout        | 2021-05-04   |
+          | checkin         | 2022-04-19   |
+          | checkout        | 2022-05-04   |
           | additionalneeds | extra pillow |
         And response status code is 200
         When user makes delete call
@@ -107,11 +91,5 @@ service is also available.<br/><br/>
         Then response status code is 404
     
     
-    
-      @auth
-      Scenario: Make a POST call with valid credentials to get a AUTH TOKEN
-        When user makes a post call with a valid credential
-        Then user should get an auth token in the body
-
 ```          
 
