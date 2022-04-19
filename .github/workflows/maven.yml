@@ -23,4 +23,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn verify
+      
+    - uses: deblockt/cucumber-report-annotations-action@v1.7
+      with:
+        access-token: ${{ secrets.GITHUB_TOKEN }}
+        path: "**/cucumber-report.json"
